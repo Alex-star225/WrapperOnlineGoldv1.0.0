@@ -1,0 +1,150 @@
+<html><script type="text/javascript" class="__REQUESTLY__SCRIPT">(function(namespace) {
+  window[namespace] = window[namespace] || {};
+  window[namespace].responseRules = {};
+
+  let open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method) {
+    this.addEventListener('readystatechange', function() {
+      if (this.readyState === 4 && window[namespace].responseRules.hasOwnProperty(this.responseURL)) {
+        const responseRule = window[namespace].responseRules[this.responseURL];
+        const {response, id} = responseRule;
+        const responseType = this.responseType;
+        let customResponse;
+
+        customResponse = response.type === 'code' ? responseRule.evaluator({
+            method,
+            url: this.responseURL,
+            requestHeaders: this.requestHeaders,
+            requestData: this.requestData,
+            responseType: this.responseType,
+            response: this.response
+          }) : response.value;
+
+        Object.defineProperty(this, 'response', {
+          get: function () {
+            if (response.type === 'static' && responseType === 'json') {
+              return JSON.parse(customResponse);
+            }
+            return customResponse;
+          }
+        });
+
+        if (responseType === '' || responseType === 'text') {
+          Object.defineProperty(this, 'responseText', {
+            get: function () {
+              return customResponse;
+            }
+          });
+        }
+
+        window.postMessage({
+          from: 'requestly',
+          type: 'response_rule_applied',
+          id
+        }, window.location.href);
+      }
+    }, false);
+    open.apply(this, arguments);
+  };
+
+  let send = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = function(data) {
+    this.requestData = data;
+    send.apply(this, arguments);
+  };
+
+  let setRequestHeader = XMLHttpRequest.prototype.setRequestHeader;
+  XMLHttpRequest.prototype.setRequestHeader = function(header, value) {
+    this.requestHeaders = this.requestHeaders || {};
+    this.requestHeaders[header] = value;
+    setRequestHeader.apply(this, arguments);
+  }
+})('__REQUESTLY__')</script><head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="/favicon.ico" type="image/png">
+
+	<title>Wrapper Online Gold - All in One LVM - Themes</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="description" content="Choose your theme! | Discord https://discord.gg/DpBBJkBuzQ">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Wrapper Online Gold Themes">
+	<meta property="og:description" content="Choose your theme! | Discord https://discord.gg/DpBBJkBuzQ">
+	<meta property="og:url" content="http://78.63.40.199:700">
+	<meta property="og:image:secure_url" content="http://78.63.40.199:700/pages/img/list_logo.png"> 
+	<meta property="og:image" content="http://78.63.40.199:700/pages/img/list_logo.png"> 
+	<meta name="theme-color" content="gold">
+	<link rel="stylesheet" type="text/css" href="/pages/css/modern-normalize.css">
+	<link rel="stylesheet" type="text/css" href="/pages/css/global.css">
+	<link rel="stylesheet" type="text/css" href="/pages/css/list.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>
+<body>
+<header>
+	<h1 style="margin:0"><img id="logo" src="/pages/img/list_logo.png" alt="Wrapper: Online" onclick="window.location.href = 'list.html'"></h1>
+	<nav id="headbuttons">
+	<a href="https://discord.gg/DpBBJkBuzQ" target="_blank" class="button_big">DISCORD</a>
+	<a href="http://78.63.40.199:8080/uploaded" target="_blank" class="button_big">FILE LIST</a>
+	</nav>
+</header>
+<center>
+<h1>Choose a theme</h1><br>
+<p>Set this, if this recommended.</p>
+<p>You can go back into video page by clicking the logo</p>
+<p><a href="/go_full" style="color: white; text-decoration: none;">No thanks</a></p>
+<p><a href="/go_full?tray=custom?isWide=0" style="color: lime; text-decoration: none;">No wide mode</a></p>
+<hr>
+<p>Or you can choose another themes</p>
+<p><a href="/go_full?tray=akon" style="color: orange; text-decoration: none;">AKON</a> - nothing</p>
+<p><a href="/go_full?tray=action" style="color: green; text-decoration: none;">Lil' Peepz (Accurate)</a> - accurate, but cloned</p>
+<p><a href="/go_full?tray=cc2" style="color: yellowgreen; text-decoration: none;">Lil' Peepz (Real)</a> - real peepz</p>
+<p><a href="/go_full?tray=animal" style="color: greenyellow; text-decoration: none;">Lil' Petz</a> - same as peepz</p>
+<p><a href="/go_full?tray=anime" style="color: red; text-decoration: none;">Anime</a> - anime go tits</p>
+<p><a href="/go_full?tray=ben10" style="color: lime; text-decoration: none;">Ben 10</a> - ben 10 powers</p>
+<p><a href="/go_full?tray=botdf" style="color: red; text-decoration: none;">Blood on the dance floor</a> - same as peepz but broken</p>
+<p><a href="/go_full?tray=bunny" style="color: hotpink; text-decoration: none;">Happy Bunny</a> - his mouth added</p>
+<p><a href="/go_full?tray=cal" style="color: magenta; text-decoration: none;">Custom Assets</a> - custom assets were added</p>
+<p><a href="/go_full?tray=chibi" style="color: cyan; text-decoration: none;">Chibi Peepz</a> - begging eyes</p>
+<p><a href="/go_full?tray=chowder" style="color: purple; text-decoration: none;">Chowder</a> - chowder from TV kid shows</p>
+<p><a href="/go_full?tray=christmas" style="color: white; text-decoration: none;">Holiday Seasonal</a> - christmas tv</p>
+<p><a href="/go_full?tray=commu" style="color: turquoise; text-decoration: none;">Community</a> - hidden assets</p>
+<p><a href="/go_full?tray=domo" style="color: brown; text-decoration: none;">Domo</a> - domo the monster</p>
+<p><a href="/go_full?tray=fullenergy" style="color: lime; text-decoration: none;">Full Energy</a> - full energy</p>
+<p><a href="/go_full?tray=import" style="color: greenyellow; text-decoration: none;">Imported Assets</a> - dozens of assets</p>
+<p><a href="/go_full?tray=monkeytalk" style="color: orangered; text-decoration: none;">SuperRica Rashy</a> - rashy go</p>
+<p><a href="/go_full?tray=monstermsh" style="color: beige; text-decoration: none;">Monsters Mayhem</a> - monster</p>
+<p><a href="/go_full?tray=ninja" style="color: grey; text-decoration: none;">Chibi Ninjas</a> - chibi ninja wants to slice</p>
+<p><a href="/go_full?tray=ninjaanime" style="color: silver; text-decoration: none;">Ninja Anime</a> - same as chibi</p>
+<p><a href="/go_full?tray=politic" style="color: red; text-decoration: none;">Politics Celebrity</a> - ???</p>
+<p><a href="/go_full?tray=politics2" style="color: blue; text-decoration: none;">US Election 2012</a> - ???</p>
+<p><a href="/go_full?tray=retro" style="color: yellow; text-decoration: none;">Cartoon Classics</a> - real</p>
+<p><a href="/go_full?tray=street" style="color: royalblue; text-decoration: none;">Street</a> - backgrounds</p>
+<p><a href="/go_full?tray=space" style="color: white; text-decoration: none;">Space Peepz</a> - same as peepz</p>
+<p><a href="/go_full?tray=spacecitizen" style="color: cyan; text-decoration: none;">Space Citizens</a> - broken</p>
+<p><a href="/go_full?tray=startrek" style="color: yellow; text-decoration: none;">Star Trek</a> - STAR TREK PRESENTS</p>
+<p><a href="/go_full?tray=stick" style="color: black; text-decoration: none;">Stick Figure</a> - barney</p>
+<p><a href="/go_full?tray=sf" style="color: indigo; text-decoration: none;">Street Fighter</a> - ryu</p>
+<p><a href="/go_full?tray=toonadv" style="color: goldenrod; text-decoration: none;">Toon Adventure</a> - no expressions</p>
+<p><a href="/go_full?tray=underdog" style="color: cornflowerblue; text-decoration: none;">Underdog</a> - flying dog</p>
+<p><a href="/go_full?tray=vietnam" style="color: chocolate; text-decoration: none;">Vietnamese</a> - oh Vietnamese</p>
+<p><a href="/go_full?tray=vsfx" style="color: coral; text-decoration: none;">Visual Effects</a> - boooom</p>
+<p><a href="/go_full?tray=custom" style="color: fuchsia; text-decoration: none;">Custom</a> - popular comedy world assets and anything</p>
+</center>
+<footer>
+	<nav id="foot-left">
+	<a href="https://www.youtube.com/channel/UC-qpKEbfivcB74Ju_ftCYpA?sub_confirmation=1">YouTube channel</a>
+		<a href="https://discord.gg/goanimate">Wrapper Central (Made by Blukas)</a>
+		<a href="/pages/html/oldlist.html">Wrapper Online: Remastered</a>
+	</nav>
+
+	<nav id="foot-right">
+		<a href="http://localhost:4664">Server Page</a>
+	</nav>
+</footer>
+
+
+
+
+
+
+
+</body></html>
